@@ -19,7 +19,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |
 | Please see the user guide for complete details:
 |
-|	https://codeigniter.com/user_guide/general/routing.html
+|	https://codeigniter.com/userguide3/general/routing.html
 |
 | -------------------------------------------------------------------------
 | RESERVED ROUTES
@@ -49,29 +49,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'home';
-$route['404_override'] = 'err/notfound';
+$route['default_controller'] = 'Auth';
+$route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-
-//Admin URL
-$route['settingapp'] = 'admin/settingapp';
-$route['dashboard'] = 'admin/dashboard';
-$route['datapegawai'] = 'admin/datapegawai';
-$route['absensi'] = 'admin/absensi';
-
-//User URL
-$route['setting'] = 'user/setting';
-$route['profile'] = 'user/profile';
-$route['absensiku'] = 'user/absensiku';
-$route['kalenderabsen'] = 'user/kalenderabsen';
-
-//Auth URL
-$route['login'] = 'auth/login';
-$route['logout'] = 'auth/logout';
-
-//Misc URL
-$route['block'] = 'err/block';
-$route['cetak'] = 'docs/print';
-$route['export'] = 'docs/export';
-$route['instantabsen'] = 'absen/instant';
-$route['confirmabsen'] = 'absen/confirmabsen';
