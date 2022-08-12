@@ -1,7 +1,7 @@
 <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
     <div class="kt-header-mobile__logo">
         <a href="{{url('/dashboard')}}">
-            <img alt="Logo" src="<?php echo config_item('assets'); ?>mt/media/logo/pdi.png" />
+            <img alt="Logo" src="<?php echo config_item('assets'); ?>mt/media/logo/logonya.png" />
         </a>
     </div>
     <div class="kt-header-mobile__toolbar">

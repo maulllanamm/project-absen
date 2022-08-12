@@ -13,7 +13,7 @@
   <div class="kt-grid kt-grid--hor kt-grid--root">
     <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
       <!-- aside start -->
-      <?php $this->load->view('templates/asside'); ?>
+      <?php $this->load->view('templates/assidem'); ?>
       <!-- aside end -->
       <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
         <!-- begin:: Header -->
@@ -41,64 +41,14 @@
                 <div class="kt-portlet__head-label">
                   <i class="kt-font-brand flaticon2-paper"></i>
                   <h3 class="kt-portlet__head-title ml-3">
-                    Selamat Datang
+                    News
                   </h3>
                 </div>
                 
                 </div>
               </div>
               <div class="kt-portlet__body">
-                <div class="row">
-
-            <div class="col-xl-3 col-md-6 mt-3 mb-4">
-                <div class="card border-left-info shadow h-100 py-2">
-                    <div class="card-body">
-                      <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                          <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Jumlah Karyawan</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlah?></div>
-                            </div>
-                            <div class="col-auto">
-                          <i class="fas fa-user fa-2x text-gray-300"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-             </div>
-
-
-            <div class="col-xl-3 col-md-6 mt-3 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah Kegiatan Sedang Berjalan</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$show?></div>
-                    </div>
-                    <div class="col-auto">
-                     <i class="fas fa-spinner fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-        <div class="col-xl-3 col-md-6 mt-3 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Jumlah Kegiatan Selesai</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"> <?= $hide?> </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fa fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
+                
               </div>
             </div>
           </div>
@@ -223,30 +173,4 @@
                 <div class="card-header"><span class="fas fa-user-check mr-1"></span>Daftar Pegawai Hadir [Hari Ini]
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered dashboard" id="list-absensi-masuk" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Waktu Datang</th>
-                                    <th>Nama Pegawai</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Waktu Datang</th>
-                                    <th>Nama Pegawai</th>
-                                    <th>Status</th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
+                    <div

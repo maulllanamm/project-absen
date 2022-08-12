@@ -1,6 +1,6 @@
 <div class="kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside">
     <!-- begin:: Aside -->
-    <div class="kt-aside__brand kt-grid__item id=" kt_aside_brand">
+    <div class="kt-aside__brand kt-grid__item id=" >
         <div class="kt-aside__brand-logo">
             <a href="{{url('/dashboard')}}">
                 <img alt="Logo" src="<?php echo config_item('assets'); ?>mt/media/logo/logonya.png" width="auto;" height="40px;" />
@@ -34,7 +34,7 @@
         <div id="kt_aside_menu" class="kt-aside-menu " data-ktmenu-vertical="1" data-ktmenu-scroll="1" data-ktmenu-dropdown-timeout="500">
             <ul class="kt-menu__nav ">
                 <li class="kt-menu__item @if($page == 'Dashboard'){{'kt-menu__item--active'}}@endif" aria-haspopup="true">
-                    <a href="<?= site_url('admin2/index'); ?>" class="kt-menu__link ">
+                    <a href="<?= site_url('manager/index'); ?>" class="kt-menu__link ">
                         <span class="kt-menu__link-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -49,38 +49,8 @@
                 </li>
                 
 
-                <li class="kt-menu__item {{ $page == 'Users' ? 'kt-menu__item--active' : '' }}" aria-haspopup="true">
-                    <a href="<?= site_url('admin2/karyawan'); ?>" class="kt-menu__link ">
-                        <span class="kt-menu__link-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
-                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                    <polygon points="0 0 24 0 24 24 0 24" />
-                                    <path d="M18,14 C16.3431458,14 15,12.6568542 15,11 C15,9.34314575 16.3431458,8 18,8 C19.6568542,8 21,9.34314575 21,11 C21,12.6568542 19.6568542,14 18,14 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
-                                    <path d="M17.6011961,15.0006174 C21.0077043,15.0378534 23.7891749,16.7601418 23.9984937,20.4 C24.0069246,20.5466056 23.9984937,21 23.4559499,21 L19.6,21 C19.6,18.7490654 18.8562935,16.6718327 17.6011961,15.0006174 Z M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
-                                </g>
-                            </svg>
-                        </span>
-                        <span class="kt-menu__link-text">Data Karyawan</span>
-                    </a>
-                </li>
-
-                <li class="kt-menu__item @if($page == 'Boats'){{'kt-menu__item--active'}}@endif" aria-haspopup="true">
-                    <a href="<?= site_url('admin2/jadwal'); ?>" class="kt-menu__link ">
-                        <span class="kt-menu__link-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
-                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                    <rect x="0" y="0" width="24" height="24" />
-                                    <path d="M12,21 C7.02943725,21 3,16.9705627 3,12 C3,7.02943725 7.02943725,3 12,3 C16.9705627,3 21,7.02943725 21,12 C21,16.9705627 16.9705627,21 12,21 Z M14.1654881,7.35483745 L9.61055177,10.3622525 C9.47921741,10.4489666 9.39637436,10.592455 9.38694497,10.7495509 L9.05991526,16.197949 C9.04337012,16.4735952 9.25341309,16.7104632 9.52905936,16.7270083 C9.63705011,16.7334903 9.74423017,16.7047714 9.83451193,16.6451626 L14.3894482,13.6377475 C14.5207826,13.5510334 14.6036256,13.407545 14.613055,13.2504491 L14.9400847,7.80205104 C14.9566299,7.52640477 14.7465869,7.28953682 14.4709406,7.27299168 C14.3629499,7.26650974 14.2557698,7.29522855 14.1654881,7.35483745 Z" fill="#000000" />
-                                </g>
-                            </svg>
-                        </span>
-                        <span class="kt-menu__link-text">Jadwal</span>
-                    </a>
-                </li>
-
-
                 <li class="kt-menu__item @if($page == 'Users'){{'kt-menu__item--active'}}@endif" aria-haspopup="true">
-                    <a href="<?= site_url('admin2/kegiatan'); ?>" class="kt-menu__link ">
+                    <a href="<?= site_url('manager/kegiatan'); ?>" class="kt-menu__link ">
                         <span class="kt-menu__link-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -94,7 +64,7 @@
                     </a>
                 </li>
                 <li class="kt-menu__item @if($page == 'ServicesBooking'){{'kt-menu__item--active'}}@endif" aria-haspopup="true">
-                    <a href="<?= site_url('admin2/absen'); ?>" class="kt-menu__link ">
+                    <a href="<?= site_url('manager/absen'); ?>" class="kt-menu__link ">
                         <span class="kt-menu__link-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -105,20 +75,6 @@
                         </span>
 
                         <span class="kt-menu__link-text">Rekap Presensi</span>
-                    </a>
-                </li>
-                <li class="kt-menu__item @if($page == 'ContactUs'){{'kt-menu__item--active'}}@endif" aria-haspopup="true">
-                    <a href="{{url('/dashboard/contact-us')}}" class="kt-menu__link ">
-                        <span class="kt-menu__link-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                    <rect x="0" y="0" width="24" height="24" />
-                                    <path d="M5,6 L19,6 C20.1045695,6 21,6.8954305 21,8 L21,17 C21,18.1045695 20.1045695,19 19,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,8 C3,6.8954305 3.8954305,6 5,6 Z M18.1444251,7.83964668 L12,11.1481833 L5.85557487,7.83964668 C5.4908718,7.6432681 5.03602525,7.77972206 4.83964668,8.14442513 C4.6432681,8.5091282 4.77972206,8.96397475 5.14442513,9.16035332 L11.6444251,12.6603533 C11.8664074,12.7798822 12.1335926,12.7798822 12.3555749,12.6603533 L18.8555749,9.16035332 C19.2202779,8.96397475 19.3567319,8.5091282 19.1603533,8.14442513 C18.9639747,7.77972206 18.5091282,7.6432681 18.1444251,7.83964668 Z" fill="#000000" />
-                                </g>
-                            </svg>
-                        </span>
-
-                        <span class="kt-menu__link-text">Log Out</span>
                     </a>
                 </li>
                 

@@ -11,7 +11,7 @@
   <div class="kt-grid kt-grid--hor kt-grid--root">
     <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
       <!-- aside start -->
-      <?php $this->load->view('templates/asside'); ?>
+      <?php $this->load->view('templates/assidek'); ?>
       <!-- aside end -->
       <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
         <!-- begin:: Header -->
@@ -26,7 +26,7 @@
                   Dashboard </h3>
                 <span class="kt-subheader__separator kt-hidden"></span>
                 <div class="kt-subheader__breadcrumbs">
-                  <a href="{{url('/dashboard')}}" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+                  <a href=" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
                   <span class="kt-subheader__breadcrumbs-separator"></span>
                   <a href="javascript:;" class="kt-subheader__breadcrumbs-link">
                     Kegiatan </a>
@@ -44,16 +44,7 @@
                     Data kegiatan
                   </h3>
                 </div>
-                <div class="kt-portlet__head-toolbar">
-                  <div class="kt-portlet__head-wrapper">
-                    <div class="kt-portlet__head-actions">
-                      <a href="javascript:void(0)" data-toggle="modal" data-target="#add_kegiatan" class="btn btn-outline-brand">
-                        <i class="la la-plus"></i>
-                        Tambah Data
-                      </a>
-                    </div>
-                  </div>
-                </div>
+                
               </div>
               <div class="kt-portlet__body">
                 <table class="table table-striped- table-bordered table-hover table-checkable" id="TableKegiatan">
@@ -64,8 +55,10 @@
                       <th>Nama Kegiatan</th>
                       <th>Mulai Kegiatan</th>
                       <th>Selesai Kegiatan</th>
+                      <th>Bukti Kegiatan</th>
                       <th>Rincian</th>
-                      <th>Nilai</th>
+                      <th>Nilai Kegiatan</th>
+                   
                       <th>Status</th>
                       <th width="15%">Aksi</th>
                     </tr>
@@ -74,33 +67,48 @@
                     <?php
                     $no = 1;
                     foreach ($kegiatan as $row) {
-                      $status = $row->status_kegiatan; ?>
+                      $status = $row->status_kegiatan;
+                      $nilai=$row->nilai_kegiatan 
+
+                     ?>
                       <tr>
                         <td><?php echo $no; ?></td>
                         <td><?php echo $row->nama_pegawai; ?></td>
                         <td><?php echo $row->nama_kegiatan; ?></td>
                         <td><?php echo $row->start_date; ?></td>
                         <td><?php echo $row->end_date; ?></td>
+                        <td><?php echo $row->surat_kegiatan; ?></td>
                         <td><?php echo $row->rincian_kegiatan; ?></td>
-                         <td><?php echo $row->nilai_kegiatan; ?></td>
-                      <?php if ($status == 'hide' ) { ?>
+                         
+                      <?php if ($nilai == 0) { ?>
+                        <td><span class='badge badge-warning badge'>Belum Dinilai</span>    </td >
+                      <?php  }else{ ?>
+                        <td><?php echo $row->nilai_kegiatan; ?></td>
+                       <?php }?>
+                     
+                      <?php if ($status == 0) { ?>
                         <td><span class='badge badge-warning'>Pending</span> 
                       <?php } 
-                       else { ?>
-                        <td><span class='badge badge-primary'>Selesai</span> 
-                      <?php  }?>
-                        
-                        <td >
-                          <a href="<?= site_url('admin2/edit_kegiatan/'.$row->id_kegiatan); ?>" class="btn btn-outline-brand btn-sm">
+                       else if($status == 2) { ?>
+                        <td><span class='badge badge-success'>Menunggu Konfirmasi</span> 
+                      <?php  }else{ ?>
+                        <td><span class='badge badge-primary'>Selesai</span>
+                       <?php }?>
+                        </td >
+                         
+                      <td> 
+                        <?php if ($status == 0 ) { ?>
+                        <a href="<?= site_url('karyawan/upload_kegiatan/'.$row->id_kegiatan); ?>" class="btn btn-outline-brand btn-sm">
                             <i class="la la-edit"></i>
-                           
-                          </a>
-                          <a href="<?= site_url('admin2/delete_kegiatan/'.$row->id_kegiatan); ?>" class="btn btn-outline-danger btn-sm btn-edit">
-                            <i class="la la-trash"></i>
-                          </a>
+                          </a> 
+                        <?php } 
+                         else { ?>
+                        <a href="" class="btn btn-outline-brand btn-sm">
+                            <i class="la la-edit"></i>
+                        </a> 
+                        <?php  }?>
                         </td>
-
-                      </tr>
+                        </tr>
                     <?php
                       $no++;
                     }
@@ -111,59 +119,6 @@
             </div>
           </div>
         </div>
-
-        <!-- ModaL Add -->
-        <div id="add_kegiatan" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalSizeDefaultItemType" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-lg " role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Add kegiatan</h5>
-              </div>
-              <form class="controls" role="form" action="<?= base_url('admin2/save_kegiatan') ?>" method="post">
-                <div class="modal-body">
-
-                  <!-- <input id="id" name="id" class="form-control" type="hidden" /> -->
-                  <div class="row">
-                    <div class="form-group col-sm-6">
-                      <label>Nama Kegiatan</label>
-                      <input name="nama_kegiatan" required="required" class="form-control" type="text" />
-                    </div>
-                    <div class="form-group col-sm-6">
-                      <label>Nama Pegawai</label>
-
-                      <select name="pegawai"  class="form-control">
-                      <option value="">-- Pilih Pegawai --</option>
-                        <?php
-                        $tes = $this->db->get('tbl_pegawai')->result();
-
-                        foreach ($tes as $die) { ?>
-                          
-                          <option value="<?php echo $die->id; ?>"><?php echo $die->nama_pegawai; ?></option>
-                        <?php
-                        }
-
-                        ?>
-                      </select>
-                    </div>
-                   <div class="form-group col-sm-6">
-                      <label>Mulai Kegiatan</label>
-                      <input name="start_date"  class="form-control" type="time" />
-                    </div>
-                    <div class="form-group col-sm-6">
-                      <label>Selesai Kegiatan</label>
-                      <input name="end_date"  class="form-control" type="time" />
-                    </div>
-                  </div> 
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Save</button>
-                  <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <!-- End Modal Add -->
 
         <!-- Edit kegiatan -->
         <div id="edit_kegiatan" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalSizeDefaultItemType" aria-hidden="true">

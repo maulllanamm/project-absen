@@ -4,6 +4,45 @@
 <html lang="en">
 <!-- base start -->
 <?php $this->load->view('templates/base'); ?>
+
+<?php 
+    $day = array(
+        '1' => 'Senin',
+        '2' => 'Selasa',
+        '3' => 'Rabu',
+        '4' => 'Kamis',
+        '5' => 'Jumat',
+        '6' => 'Sabtu',
+        '7' => 'Minggu',
+    );
+    
+    $month = array(
+        '01'=>'Jauary',
+        '02'=>'February',
+        '03'=>'Maret',
+        '04'=>'April',
+        '05'=>'Mei',
+        '06'=>'Juni',
+        '07'=>'Juli',
+        '08'=>'Agustus',
+        '09'=>'September',
+        '10'=>'Oktober',
+        '11'=>'November',
+        '12'=>'Desember',
+    );
+    
+
+    $bulan = date('m');
+    $bulan = $month[$bulan];    
+
+    $tanggal = date('d ').$bulan.date(' Y');
+
+    $hari = date('N');
+    $hari = $day[$hari];
+
+
+  
+?>
 <!-- base end -->
 
 <body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--fixed kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
@@ -13,7 +52,7 @@
   <div class="kt-grid kt-grid--hor kt-grid--root">
     <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
       <!-- aside start -->
-      <?php $this->load->view('templates/asside'); ?>
+      <?php $this->load->view('templates/assidek'); ?>
       <!-- aside end -->
       <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
         <!-- begin:: Header -->
@@ -30,7 +69,7 @@
                   <a href="{{url('/dashboard')}}" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
                   <span class="kt-subheader__breadcrumbs-separator"></span>
                   <a href="javascript:;" class="kt-subheader__breadcrumbs-link">
-                    Admin </a>
+                    Karyawan </a>
                 </div>
               </div>
             </div>
@@ -39,70 +78,94 @@
             <div class="kt-portlet kt-portlet--mobile">
               <div class="kt-portlet__head kt-portlet__head--lg">
                 <div class="kt-portlet__head-label">
-                  <i class="kt-font-brand flaticon2-paper"></i>
+                  <i class="kt-font-brand flaticon2-time"></i>
                   <h3 class="kt-portlet__head-title ml-3">
-                    Selamat Datang
+                    PRESENSI
                   </h3>
                 </div>
-                
+
                 </div>
               </div>
               <div class="kt-portlet__body">
-                <div class="row">
+                
+              </div>
 
-            <div class="col-xl-3 col-md-6 mt-3 mb-4">
-                <div class="card border-left-info shadow h-100 py-2">
-                    <div class="card-body">
-                      <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                          <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Jumlah Karyawan</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlah?></div>
+            <div class="row">
+            <div class="col-lg-6">
+              <div class="card shadow mb-2"> 
+                <div class="card-body">
+                    <center><!-- <img class="img-profile rounded-circle " style="width: 130px; margin-top: : 2px" src="<?=base_url('assets/img/profile/') . $user['gambar']; ?>"> --></center>
+                    <center> <span class='badge badge-success' >Kasir</span></center>
+                
+                    <hr class="mt-1">
+                    <div class="form-group" style="margin-bottom: 2px ">
+                        <span>Nama : </span>
+                    
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1px ">
+                        <span>Email &nbsp;: </span>
+                     
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1px ">
+                        <span>Jabatan &nbsp;: </span>
+                     
+                    </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="card shadow mb-2"> 
+                <div class="card-body">
+                    <center><!-- <img class="img-profile rounded-circle " style="width: 130px; margin-top: : 2px" src="<?=base_url('assets/img/profile/') . $user['gambar']; ?>"> --></center>
+                    <center> Absen <br>
+                    <h2 id="jam"></h2>
+                    </center>
+                    <?php date_default_timezone_set("Asia/Jakarta"); ?>
+                    
+                    <h1 class="text-center"><?= $hari,', ',$tanggal; ?></h1>
+                    <div class="form-group text-center" style="margin-bottom: 2px ">
+                    <select name="ket_absen" class="form-control align-content-center my-2" id="ket_absen">
+                        <option value="Bekerja Di Kantor">Bekerja Di Kantor</option>
+                        <option value="Bekerja Di Rumah / WFH">Bekerja Di Rumah / WFH</option>
+                        <option value="Sakit">Sakit</option>
+                        <option value="Cuti">Cuti</option>
+                    </select>
+                    <div class="mt-2">
+                        <div id="func-absensi">
+                            <p class="font-weight-bold">Status Kehadiran: <span class="badge badge-primary">Belum Absen</span></p>
+                            <div id="jamabsen">
+                                <p>Waktu Datang: 00:00:00</p>
+                                <p>Waktu Pulang: 00:00:00</p>
                             </div>
-                            <div class="col-auto">
-                          <i class="fas fa-user fa-2x text-gray-300"></i>
                         </div>
-                      </div>
+                        <button class="btn btn-dark" id="btn-absensi">Absen</button>
                     </div>
-                  </div>
-             </div>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="text-muted">Absen Datang Jam: 08:00:00</div>
+                        <div class="text-muted">Absen Pulang Jam: 16:00:00</div>
+                    </div>
+                    
+                    </div>
 
-
-            <div class="col-xl-3 col-md-6 mt-3 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah Kegiatan Sedang Berjalan</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$show?></div>
+                    <div class="form-group" style="margin-bottom: 1px ">
+                        <span>Email &nbsp;: </span>
+                     
                     </div>
-                    <div class="col-auto">
-                     <i class="fas fa-spinner fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
-
-        <div class="col-xl-3 col-md-6 mt-3 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Jumlah Kegiatan Selesai</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"> <?= $hide?> </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fa fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
-              </div>
             </div>
           </div>
         </div>
+            </div>
+
+
+       
 
         <!-- begin:: Footer -->
         <!-- <?php $this->load->view('templates/footer'); ?> -->
@@ -120,6 +183,25 @@
     $(document).ready(function() {
       $('#TableKegiatan').DataTable();
     });
+
+
+    timer();
+
+        function timer() {
+            var currentTime = new Date()
+            var hours = currentTime.getHours()
+            var minutes = currentTime.getMinutes()
+            var sec = currentTime.getSeconds()
+            if (minutes < 10) {
+                minutes = "0" + minutes
+            }
+            if (sec < 10) {
+                sec = "0" + sec
+            }
+            var t_str = hours + ":" + minutes + ":" + sec + " ";
+            document.getElementById('jam').innerHTML = t_str;
+            setTimeout(timer, 1000);
+        }
   </script>
 </body>
 

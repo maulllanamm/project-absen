@@ -12,13 +12,13 @@
             <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="0px,0px">
                 <div class="kt-header__topbar-user">
                     <span class="kt-header__topbar-welcome kt-hidden-mobile">Hi,</span>
-                    <span class="kt-header__topbar-username kt-hidden-mobile">user</span>
+                    <span class="kt-header__topbar-username kt-hidden-mobile"><?=ucwords($user['nama_pegawai']);?></span>
                     <img class="kt-hidden" alt="Pic" src="<?php echo config_item('assets'); ?>mt/media/users/default.jpg" />
                     <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
                     <!-- @php
                     $short = explode('Metronic',Auth::user()->name);
                     @endphp -->
-                    <span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">1</span>
+                    <span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold"></span>
                 </div>
             </div>
             <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
@@ -30,8 +30,8 @@
                         <span class="kt-hidden">username</span>
                     </div>
                     <div class="kt-user-card__name">
-                        name<br>
-                        <small>role</small>
+                        <?=ucwords($user['nama_pegawai']);?><br>
+                        <small><?=ucwords($user['roles']);?></small>
                     </div>
                 </div>
                 <!--end: Head -->
@@ -39,7 +39,7 @@
                 <div class="kt-notification">
                     <div class="kt-notification__custom kt-space-between">
                         <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();" target="_blank" class="btn btn-label btn-label-brand btn-sm btn-bold">Sign Out</a>
-                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" class="d-none">
+                        <form id="logout-form" action="<?= base_url('auth/logout'); ?>" method="POST" class="d-none">
                             <!-- @csrf -->
                         </form>
                     </div>
