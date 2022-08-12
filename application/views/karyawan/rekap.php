@@ -11,7 +11,7 @@
   <div class="kt-grid kt-grid--hor kt-grid--root">
     <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
       <!-- aside start -->
-      <?php $this->load->view('templates/asside'); ?>
+      <?php $this->load->view('templates/assidek'); ?>
       <!-- aside end -->
       <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
         <!-- begin:: Header -->
@@ -36,14 +36,14 @@
 
         
                  <div class="kt-container kt-grid__item kt-grid__item--fluid">
-                  <form action="<?= base_url('admin2/detail_absen'); ?>" method="POST" autocomplete="off">
+                  <form action="<?= base_url('admin2/absen'); ?>" method="POST" autocomplete="off">
                     <div class="row">
                         <div class="col-md-3">
-                      <input type="date" name="awal" class="form-control col-sm ml-1" value="<?= $tgl_awal ?>">
+                      <input type="date" name="awal" class="form-control col-sm ml-1" value="">
                         </div>
                         <label style="padding-top: 0.6rem"><b>s/d</b></label>
                         <div class="col-md-3">
-                          <input type="date" name="akhir" class="form-control  col-sm" value="<?= $tgl_akhir ?>">
+                          <input type="date" name="akhir" class="form-control  col-sm" value="">
                         </div>
 
                       <div class="col-md-4">
@@ -51,13 +51,10 @@
                           <option value="">-- Pilih Pegawai --</option>
                           <?php
                         $tes = $this->db->get('tbl_pegawai')->result();
-
                         foreach ($tes as $die) { ?>
-                          
                           <option value="<?php echo $die->id; ?>"><?php echo $die->nama_pegawai; ?></option>
                         <?php
                         }
-
                         ?>
                         </select>
                       </div>
@@ -67,14 +64,13 @@
                   </div>
                 </form>
               </div>
-            
           <div class="kt-container kt-grid__item kt-grid__item--fluid">
             <div class="kt-portlet kt-portlet--mobile">
               <div class="kt-portlet__head kt-portlet__head--lg">
                 <div class="kt-portlet__head-label">
                     <i class="kt-font-brand flaticon2-paper"></i>
                   <h3 class="kt-portlet__head-title ml-3">
-                    Detail Presensi
+                    Rekap Presensi
                   </h3>  
                 </div>
                 
@@ -86,6 +82,14 @@
                         Print
                       </a>
                     </div>
+
+                    <div class="kt-portlet__head-actions ml-1">
+                      <a  class="btn btn-outline-brand btn-sm" href="<?= base_url('admin2/detail_absen') ?>">
+                        <i class="la la-edit"></i>
+                        DetaiL Absen
+                    </a>
+                    </div>
+
                   </div>
                 </div>
               </div>
@@ -95,45 +99,23 @@
                     <tr>
                       <th>No</th>
                       <th>Nama Pegawai</th>
-                      <th>Tanggal basen</th>
-                      <th>Status Absen</th>
+                      <th>Bulan/Tahun</th>
+                      <th>Total Absen</th>
+
                     </tr>
                   </thead>
                   <tbody>
-                    <?php
-                    $no = 1;
-                    foreach ($absen as $row) {
-                      $status = $row->status_absen; ?>
+                   
                       <tr>
-                        <td><?php echo $no; ?></td>
-                        <td><?php echo $row->nama_pegawai; ?></td>
-                        <td><?php echo date('d-m-Y', strtotime($row->tgl_absen)); ?></td>
+                        <td></td>
+                        <td></td>
+
+                        <td></td>
+                        <td></td>
                        
-                     
-                      <?php if ($status == 1 ) { ?>
-                        <td><span class='badge badge-succes'>Hadir</span> 
-                      <?php }else{?>
-
-                        <td><span class='badge badge-danger'>Telat</span> 
-
-                     <?php } ?>
-                        
-                        <!-- <td >
-                          <a href="javascript:void(0)" data-toggle="modal" data-target="#edit_kegiatan" class="btn btn-outline-brand btn-sm">
-                            <i class="la la-edit"></i>
-                           
-                          </a>
-                          <a href="javascript:void(0)" class="btn btn-outline-danger btn-sm">
-                            <i class="la la-trash"></i>
-                          
-                          </a>
-                        </td> -->
- 
-                     </tr>
-                    <?php
-                      $no++;
-                    }
-                    ?>
+                    
+                      </tr>
+                  
                   </tbody>
                 </table>
               </div>
@@ -151,7 +133,7 @@
 
 
 function myFunction() {
-  window.open("<?= base_url('admin2/cetak_detail') ?>?tawal=<?=$tgl_awal; ?>&takhir=<?=$tgl_akhir; ?>&pegawai=<?=$pegawai; ?>", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=1070,left=1070,width=1070,height=1070");
+  window.open("<?= base_url('admin2/cetakk') ?>?tawal=<?=$tgl_awal; ?>&takhir=<?=$tgl_akhir; ?>&pegawai=<?=$pegawai; ?>", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=1070,left=1070,width=1070,height=1070");
 }
 
   </script>

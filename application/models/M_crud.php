@@ -49,6 +49,26 @@ class M_crud extends CI_Model
         return $q->result();     
     }
 
+     function detail_absen($tgl_awal=null, $tgl_akhir=null, $pegawai=null){
+        if ($tgl_awal == null or $tgl_awal == "")  $tgl_awal = date('Y/m/d');
+        if ($tgl_akhir == null or $tgl_akhir == "") $tgl_akhir = date('Y/m/d');
+
+        if ($pegawai == null)  {
+            
+        
+        $sql ="SELECT count(p.nama_pegawai) as jumlah_absen, p.nama_pegawai,a.tgl_absen, a.status_absen FROM tbl_absensi a JOIN tbl_pegawai p ON p.id = a.id_pegawai  AND a.tgl_absen BETWEEN '$tgl_awal' AND '$tgl_akhir' ORDER BY p.nama_pegawai ";
+       
+        } else {
+            
+            $sql = "SELECT count(p.nama_pegawai) as jumlah_absen,p.nama_pegawai, a.tgl_absen, a.status_absen  FROM tbl_absensi a
+                JOIN tbl_pegawai p on p.id = a.id_pegawai AND a.tgl_absen BETWEEN '$tgl_awal' AND '$tgl_akhir' AND a.id_pegawai=$pegawai ORDER BY p.nama_pegawai";
+        }
+        //echo $querinya;
+        //die();
+        $q = $this->db->query($sql);
+        return $q->result();     
+    }
+
     function cetak_absen($tgl_awal=null, $tgl_akhir=null, $pegawai=null){
         if ($tgl_awal == null or $tgl_awal == "")  $tgl_awal = date('Y/m/d');
         if ($tgl_akhir == null or $tgl_akhir == "") $tgl_akhir = date('Y/m/d');
