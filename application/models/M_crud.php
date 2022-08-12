@@ -10,71 +10,117 @@ class M_crud extends CI_Model
         return $result = $query->result();
     }
 
-    // get data dropdown
-    function ListRuangan()
-    {
-        // ambil data dari db
-        $this->db->order_by('NamaRuangan', 'asc');
-        $this->db->WHERE('statusEnabled', '1');
-        $this->db->WHERE_in('KdInstalasi', array('02', '07', '19', '01', '03', '09', '10', '04'));
 
-        $result = $this->db->get('ruangan');
-        // bikin array
-        // please select berikut ini merupakan tambahan saja agar saat pertama
-        // diload akan ditampilkan text please select.
-        $dd[''] = 'Please Select';
-        if ($result->num_rows() > 0) {
-            foreach ($result->result() as $row) {
-                // tentukan value (sebelah kiri) dan labelnya (sebelah kanan)
-                $dd[$row->KdRuangan] = $row->NamaRuangan;
-            }
+    function getpegawai()
+    {
+        $sql = "SELECT *  FROM tbl_pegawai  ORDER BY id ASC";
+        $query = $this->db->query($sql);
+        return $result = $query->result();
+    }
+
+    function getkegiatan()
+    {
+        $sql = "SELECT *  FROM tbl_kegiatan k
+         JOIN tbl_pegawai p on k.id_pegawai=p.id
+
+         ORDER BY k.id_pegawai ASC";
+        $query = $this->db->query($sql);
+        return $result = $query->result();
+    }
+
+    /*function getabsen()
+    {
+        $sql = "SELECT *  FROM tbl_absensi a
+        JOIN tbl_pegawai p on p.id = a.id_pegawai
+         ORDER BY a.id ASC";
+        $query = $this->db->query($sql);
+        return $result = $query->result();
+    }*/
+
+
+     public function insert_kegiatan($data)
+    {
+        $this->db->insert('tbl_kegiatan', $data);
+    }
+
+
+     public function delete_pegawai($id)
+    {
+        $query = $this->db->delete('tbl_pegawai',array('id' => $id));
+        return $query;
+    } 
+
+    public function delete_kegiatan($id)
+    {
+        $query = $this->db->delete('tbl_kegiatan',array('id_kegiatan' => $id));
+        return $query;
+    } 
+
+    public function getkegiatanById($id){
+        $hasil=$this->db->get_where('tbl_kegiatan', ["id_kegiatan"=>$id])->row_array();
+        return $hasil;
+    }
+
+    function update_kegiatan($id,$id_pegawai,$nama_kegiatan,$start_date,$end_date){
+       
+         $data = array(
+            'id_kegiatan'=>$id,
+            'id_pegawai'=>$id_pegawai,
+            'nama_kegiatan'=>$nama_kegiatan,
+            'start_date' =>$start_date,
+            'end_date' =>$end_date
+        );
+
+       $this->db->where('id_kegiatan', $id);
+        $this->db->update('tbl_kegiatan', $data);
+    }
+
+    function getabsen($tgl_awal=null, $tgl_akhir=null, $pegawai=null){
+        if ($tgl_awal == null or $tgl_awal == "")  $tgl_awal = date('Y/m/d');
+        if ($tgl_akhir == null or $tgl_akhir == "") $tgl_akhir = date('Y/m/d');
+
+        if ($pegawai == null)  {
+            
+        
+
+        $sql ="SELECT p.nama_pegawai,a.tgl_absen, a.status_absen FROM tbl_absensi a JOIN tbl_pegawai p ON p.id = a.id_pegawai  AND a.tgl_absen BETWEEN '$tgl_awal' AND '$tgl_akhir' ORDER BY a.tgl_absen";
+       
+        } else {
+            
+            $sql = "SELECT p.nama_pegawai, a.tgl_absen, a.status_absen  FROM tbl_absensi a
+        JOIN tbl_pegawai p on p.id = a.id_pegawai AND a.tgl_absen BETWEEN '$tgl_awal' AND '$tgl_akhir' AND a.id_pegawai=$pegawai ORDER BY a.id";
         }
-        return $dd;
+        //echo $querinya;
+        //die();
+        $q = $this->db->query($sql);
+        return $q->result();     
     }
 
-    function AcakPassword($password)
-    {
-        $kata    = $password;
-        $code = '1234567890';
-        $cryp = '';
-        for ($i = 1; $i <= strlen($kata); $i++) {
-            $lok = ($i % strlen($code)) + 1;
-            $cryp = $cryp . chr(ord(substr($kata, $i - 1, 1)) ^ ord(substr($code, $lok - 1, 1)));
+    function cetak_absen($tgl_awal=null, $tgl_akhir=null, $pegawai=null){
+        if ($tgl_awal == null or $tgl_awal == "")  $tgl_awal = date('Y/m/d');
+        if ($tgl_akhir == null or $tgl_akhir == "") $tgl_akhir = date('Y/m/d');
+
+        if ($pegawai == null)  {
+            
+        
+
+        $sql ="SELECT p.nama_pegawai,a.tgl_absen, a.status_absen FROM tbl_absensi a JOIN tbl_pegawai p ON p.id = a.id_pegawai  AND a.tgl_absen BETWEEN '$tgl_awal' AND '$tgl_akhir' ORDER BY a.tgl_absen";
+       
+        } else {
+            
+            $sql = "SELECT p.nama_pegawai, a.tgl_absen, a.status_absen  FROM tbl_absensi a
+        JOIN tbl_pegawai p on p.id = a.id_pegawai AND a.tgl_absen BETWEEN '$tgl_awal' AND '$tgl_akhir' AND a.id_pegawai=$pegawai ORDER BY a.id";
         }
-        return    $AcakPassword = $cryp;
+        //echo $querinya;
+        //die();
+        $q = $this->db->query($sql);
+        return $q->result_array();     
     }
 
-    function CekHakRuanganPegawai($IdPegawai, $KdRuangan)
-    {
-        $sql = "SELECT count(*) as Total from loginruangan where IdPegawai='$IdPegawai' and KdRuangan='$KdRuangan'";
-        $query = $this->db->query($sql);
-        return $result = $query->result();
-    }
 
-    function CekJenisPegawai($IdPegawai)
-    {
-        $sql = "select KdJenisPegawai , `Jenis Pegawai` AS JenisPegawai from V_M_DataPegawaiNew WHERE IdPegawai ='$IdPegawai' ";
-        $query = $this->db->query($sql);
-        return $result = $query->result();
-    }
 
-    function AmbilNamaRuangan($KdRuangan)
-    {
-        $sql = "Select NamaRuangan , KdInstalasi From Ruangan Where KdRuangan='$KdRuangan'";
-        $query = $this->db->query($sql);
-        return $result = $query->result();
-    }
-    function get_pegawai()
-    {
-        $data = $this->db->select('*')
-            ->from('tbl_kegiatan a')
-            ->join('tbl_pegawai b', 'a.id_pegawai=b.id', 'LEFT')
-            ->get();
-        return $data;
-    }
-    public function show2($table)
-    {
-        $sql = $this->db->get($table);
-        return $sql;
-    }
+
+
 }
+
+   

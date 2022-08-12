@@ -1,60 +1,151 @@
-<div class="container auth-card">
-    <div class="row justify-content-center">
-        <div class="col-lg-6 align-self-center">
-            <div class="text-center my-2">
-                <img src="<?= $logo_source = (empty($dataapp['logo_instansi'])) ? base_url('assets/img/clock-image.png') : (($dataapp['logo_instansi'] == 'default-logo.png') ? base_url('assets/img/clock-image.png') : base_url('storage/setting/' . $dataapp['logo_instansi'])); ?>" class="card-img" style="width:50%;">
-                <h3 class="text-white"><?= $appname = (empty($dataapp['nama_app_absensi'])) ? 'Absensi Online' : $dataapp['nama_app_absensi']; ?></h3>
-                <h4 id="date-and-clock mt-3">
-                    <h5 class="text-white" id="clocknow"></h5>
-                    <h5 class="text-white" id="datenow"></h5>
-                </h4>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="card shadow-lg border-0 rounded-lg p-2">
-                <div class="card-header">
-                    <h3 class="text-center font-weight-light">Login</h3>
-                </div>
-                <div class="card-body">
-                    <?= $this->session->flashdata('authmsg'); ?>
-                    <?= form_open('login'); ?>
-                    <div class="form-group row">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text"><span class="fas fa-user"></span></div>
-                            </div>
-                            <input class="form-control py-4" name="username" id="username" type="text" placeholder="Enter username" value="<?= set_value('username') ?>" />
-                        </div>
-                    </div>
-                    <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
-                    <div class="form-group row">
-                        <div class="input-group" id="show_hide_password">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text"><span class="fas fa-key"></span></div>
-                            </div>
-                            <input class="form-control py-4" name="password" id="password" type="password" placeholder="Enter password" />
-                            <div class="input-group-append">
-                                <button class="input-group-text" type="button" tabindex="-1"><span class="fas fa-eye-slash" aria-hidden="false"></span></button>
-                            </div>
-                        </div>
-                    </div>
-                    <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
-                    <div class="form-group">
-                        <div class="custom-control custom-checkbox"><input class="custom-control-input" id="rememberme" type="checkbox" name="rememberme" /><label class="custom-control-label" for="rememberme">Remember Me</label></div>
-                    </div>
-                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0"><button type="submit" class="btn btn-primary"><span class="fas fa-fw fa-sign-in-alt mr-2"></span>Login</button></div>
-                    </form>
-                    <hr>
-                    <div class="container">
-                        <div class="d-flex align-items-center justify-content-center small">
-                            <div class="text-muted">Copyright &copy; <?= date("Y"); ?><a href="<?= base_url(); ?>" class="ml-1"><?= $appname = (empty($dataapp['nama_app_absensi'])) ? 'Absensi Online' : $dataapp['nama_app_absensi']; ?></a>
-                                <div class="d-inline">Powered By<a href="https://github.com/sandyh90" class="ml-1">Pickedianz</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+
+
+  <!DOCTYPE html>
+
+<!--
+Author: Setiawan Iman
+Website: http://www.unzypsoft.com/
+Contact: iman@unzypsoft.com / sales@unzypsoft.com
+-->
+<html lang="en">
+
+    <!-- begin::Head -->
+    <head>
+        <base href="../../../">
+        <meta charset="utf-8" />
+        <title>KJM</title>
+        <meta name="description" content="Login page example">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!--begin::Fonts -->
+     
+
+        <!--begin::Page Custom Styles(used by this page) -->
+        <link href="<?php echo config_item('assets'); ?>mt/css/pages/login/login-2.css" rel="stylesheet" type="text/css" />
+
+        <!--end::Page Custom Styles -->
+
+        <!--begin::Global Theme Styles(used by all pages) -->
+        <link href="<?php echo config_item('assets'); ?>mt/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo config_item('assets'); ?>mt/css/style.bundle.css" rel="stylesheet" type="text/css" />
+
+        <!--end::Global Theme Styles -->
+
+        <!--begin::Layout Skins(used by all pages) -->
+        <link href="<?php echo config_item('assets'); ?>mt/css/skins/header/base/light.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo config_item('assets'); ?>mt/css/skins/header/menu/light.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo config_item('assets'); ?>mt/css/skins/brand/dark.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo config_item('assets'); ?>mt/css/skins/aside/dark.css" rel="stylesheet" type="text/css" />
+        <!--end::Layout Skins -->
+        <link rel="icon" href="<?php echo config_item('assets'); ?>aseanAssets/aseranLogo2.png">
+    </head>
+
+    <!-- end::Head -->
+
+    <!-- begin::Body -->
+    <body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--fixed kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
+    
+        <div class="kt-grid kt-grid--ver kt-grid--root">
+        <div class="kt-grid kt-grid--hor kt-grid--root kt-login kt-login--v2 kt-login--signin" id="kt_login">
+              <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" style="background-image: url(<?php echo config_item('assets'); ?>mt/media/bg/bg-1.jpg);position:absolute;width:100%;height:100%;">
+                  <div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
+                      <div class="kt-login__container">
+                          <div class="kt-login__logo">
+                              <a href="#">
+                                  <img src="<?php echo config_item('assets'); ?>logos/footer-logo.png" style="width: 40px;">
+                              </a>
+                          </div>
+                          <div class="kt-login__signin">
+                              <div class="kt-login__head">
+                                  <h3 class="kt-login__title">Login</h3>
+                              </div>
+                              <?= $this->session->flashdata('message');?>
+                              <form class="user" method="post" action="<?= base_url('auth');?>">
+                                <div class="form-group">
+                                  <input type="text" class="form-control form-control-user"  name="username" aria-describedby="emailHelp" placeholder="Enter Email Address..." value="<?=set_value('email'); ?>">
+                                   <?= form_error('email', '<small class="text-danger pl-3">','</small>' ); ?>
+                                </div>
+                                <div class="form-group">
+                                  <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
+                                   <?= form_error('password', '<small class="text-danger pl-3">','</small>' ); ?>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                  Login
+                                </button>
+                                     
+                                <div class=" form-group text-center mt-2"> 
+                                <input type="checkbox" name="remember " id="remember">
+                                <label>Ingat Saya</label>
+                              </div>
+                              </form>
+                          </div>
+                          <!-- <div class="kt-login__forgot">
+                              <div class="kt-login__head">
+                                  <h3 class="kt-login__title">Forgotten Password ?</h3>
+                                  <div class="kt-login__desc">Enter your email to reset your password:</div>
+                              </div>
+                              <form class="kt-form" action="">
+                                  <div class="input-group">
+                                      <input class="form-control" type="text" placeholder="Email" name="email" id="kt_email" autocomplete="off">
+                                  </div>
+                                  <div class="kt-login__actions">
+                                      <button id="kt_login_forgot_submit" class="btn btn-pill kt-login__btn-primary">Request</button>&nbsp;&nbsp;
+                                      <button id="kt_login_forgot_cancel" class="btn btn-pill kt-login__btn-secondary">Cancel</button>
+                                  </div>
+                              </form>
+                          </div> -->
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+    <script>
+            var KTAppOptions = {
+                "colors": {
+                    "state": {
+                        "brand": "#5d78ff",
+                        "dark": "#282a3c",
+                        "light": "#ffffff",
+                        "primary": "#5867dd",
+                        "success": "#34bfa3",
+                        "info": "#36a3f7",
+                        "warning": "#ffb822",
+                        "danger": "#fd3995"
+                    },
+                    "base": {
+                        "label": [
+                            "#c5cbe3",
+                            "#a1a8c3",
+                            "#3d4465",
+                            "#3e4466"
+                        ],
+                        "shape": [
+                            "#f0f3ff",
+                            "#d9dffa",
+                            "#afb4d4",
+                            "#646c9a"
+                        ]
+                    }
+                }
+            };
+        </script>
+
+        <script src="<?php echo config_item('assets'); ?>mt/plugins/global/plugins.bundle.js" type="text/javascript"></script>
+        <script src="<?php echo config_item('assets'); ?>mt/js/scripts.bundle.js" type="text/javascript"></script>
+
+        <!--end::Global Theme Bundle -->
+
+        <!--begin::Page Scripts(used by this page) -->
+        <script src="<?php echo config_item('assets'); ?>mt/js/pages/custom/login/login-general.js" type="text/javascript"></script>
+
+        <!--end::Page Scripts -->
+    </body>
+
+    <!-- end::Body -->
+</html>
+
+  
+  
+

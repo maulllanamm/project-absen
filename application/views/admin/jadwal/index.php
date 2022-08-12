@@ -18,7 +18,9 @@
         <?php $this->load->view('templates/header2'); ?>
         <!-- end:: Header -->
         <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+
           <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+
             <div class="kt-container  kt-container--fluid ">
               <div class="kt-subheader__main">
                 <h3 class="kt-subheader__title">
@@ -28,18 +30,20 @@
                   <a href="{{url('/dashboard')}}" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
                   <span class="kt-subheader__breadcrumbs-separator"></span>
                   <a href="javascript:;" class="kt-subheader__breadcrumbs-link">
-                    News </a>
+                   Jadwal </a>
                 </div>
               </div>
             </div>
           </div>
+
           <div class="kt-container kt-grid__item kt-grid__item--fluid">
+             <?= $this->session->flashdata('message'); ?>
             <div class="kt-portlet kt-portlet--mobile">
               <div class="kt-portlet__head kt-portlet__head--lg">
                 <div class="kt-portlet__head-label">
                   <i class="kt-font-brand flaticon2-paper"></i>
                   <h3 class="kt-portlet__head-title ml-3">
-                    News
+                    Jadwal
                   </h3>
                 </div>
                 <div class="kt-portlet__head-toolbar">
@@ -47,7 +51,7 @@
                     <div class="kt-portlet__head-actions">
                       <a href="javascript:void(0)" data-toggle="modal" data-target="#add_jadwal" class="btn btn-outline-brand">
                         <i class="la la-plus"></i>
-                        New Record
+                        Data Jadwal
                       </a>
                     </div>
                   </div>
@@ -106,7 +110,7 @@
               <div class="modal-header">
                 <h5 class="modal-title">Add Jadwal</h5>
               </div>
-              <form class="controls" role="form" action="<?= base_url('Jadwal/save') ?>" method="post">
+              <form class="controls" role="form" action="<?= base_url('admin2/save_jadwal') ?>" method="post">
                 <div class="modal-body">
 
                   <!-- <input id="id" name="id" class="form-control" type="hidden" /> -->

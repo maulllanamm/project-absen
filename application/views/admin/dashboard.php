@@ -1,4 +1,81 @@
-<div class="container-fluid">
+
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- base start -->
+<?php $this->load->view('templates/base'); ?>
+<!-- base end -->
+
+<body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--fixed kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
+  <!-- header start -->
+  <?php $this->load->view('templates/header'); ?>
+  <!-- header end -->
+  <div class="kt-grid kt-grid--hor kt-grid--root">
+    <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
+      <!-- aside start -->
+      <?php $this->load->view('templates/asside'); ?>
+      <!-- aside end -->
+      <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
+        <!-- begin:: Header -->
+        <?php $this->load->view('templates/header2'); ?>
+        <!-- end:: Header -->
+        <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+          <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+            <div class="kt-container  kt-container--fluid ">
+              <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">
+                  Dashboard </h3>
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                  <a href="{{url('/dashboard')}}" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+                  <span class="kt-subheader__breadcrumbs-separator"></span>
+                  <a href="javascript:;" class="kt-subheader__breadcrumbs-link">
+                    Admin </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="kt-container kt-grid__item kt-grid__item--fluid">
+            <div class="kt-portlet kt-portlet--mobile">
+              <div class="kt-portlet__head kt-portlet__head--lg">
+                <div class="kt-portlet__head-label">
+                  <i class="kt-font-brand flaticon2-paper"></i>
+                  <h3 class="kt-portlet__head-title ml-3">
+                    News
+                  </h3>
+                </div>
+                
+                </div>
+              </div>
+              <div class="kt-portlet__body">
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- begin:: Footer -->
+        <!-- <?php $this->load->view('templates/footer'); ?> -->
+        <!-- end:: Footer -->
+      </div>
+    </div>
+  </div>
+  <div id="kt_scrolltop" class="kt-scrolltop">
+    <i class="fa fa-arrow-up"></i>
+  </div>
+  <!-- begin:: script -->
+  <!-- <?php $this->load->view('templates/script'); ?> -->
+  <!-- end:: script -->
+  <script>
+    $(document).ready(function() {
+      $('#TableKegiatan').DataTable();
+    });
+  </script>
+</body>
+
+</html>
+
+<!-- <div class="container-fluid">
     <div class="my-4 d-sm-flex align-items-center justify-content-between">
         <h1>Dashboard</h1>
         <div class="btn btn-primary" id="sync-data-dashboard"><span class="fas fa-sync-alt mr-1"></span>Refresh Data</div>
@@ -122,4 +199,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
