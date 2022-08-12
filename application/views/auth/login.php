@@ -53,6 +53,7 @@ Contact: iman@unzypsoft.com / sales@unzypsoft.com
                           <div class="kt-login__logo">
                               <a href="#">
                                   <img src="<?php echo config_item('assets'); ?>mt/media/logo/logonya.png" style="width: 80px;">
+
                               </a>
                           </div>
                           <div class="kt-login__signin">
@@ -71,8 +72,7 @@ Contact: iman@unzypsoft.com / sales@unzypsoft.com
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
                                   Login
-                                </button>
-                                     
+                                </button>  
                                 <div class=" form-group text-center mt-2"> 
                                 <input type="checkbox" name="remember " id="remember">
                                 <label>Ingat Saya</label>
