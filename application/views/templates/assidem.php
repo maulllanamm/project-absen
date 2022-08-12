@@ -1,6 +1,10 @@
 <div class="kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside">
     <!-- begin:: Aside -->
+<<<<<<< HEAD
     <div class="kt-aside__brand kt-grid__item id=" >
+=======
+    <div class="kt-aside__brand kt-grid__item id=" kt_aside_brand">
+>>>>>>> 05bca21583e6140bde4002a3c959b79f0e7859bb
         <div class="kt-aside__brand-logo">
             <a href="{{url('/dashboard')}}">
                 <img alt="Logo" src="<?php echo config_item('assets'); ?>mt/media/logo/logonya.png" width="auto;" height="40px;" />

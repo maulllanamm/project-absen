@@ -48,14 +48,22 @@ s{
  <div id="page">
             <div class="mt-2">
              <div >
+<<<<<<< HEAD
              <img src="<?php echo config_item('assets'); ?>mt/media/logo/logonya.png" style="padding:0 0 0 10px;  float:left;  width: 40px;"> <center><p class="mb-0 font-weight-" style="font-size: 13px">LAPORAN PRESENSI <br>Jl.xxxx II No.2 Bogor, Telp (0251) 8341600 (Hunting)<br>email:  </p></center>
+=======
+             <img src="<?= base_url('assets/img/logo/umi.png') ?>" style="padding:0 0 0 10px;  float:left;  width: 122px;"> <p class="mb-0 font-weight-" style="font-size: 13px">LAPORAN PRESENSI <br>Jl.xxxx II No.2 Bogor, Telp (0251) 8341600 (Hunting)<br>email:  </p></center>
+>>>>>>> 05bca21583e6140bde4002a3c959b79f0e7859bb
              <!--  <hr class="line-title mt-0"> -->
              </div>
             </div>
           <p id='tr' class="mb-0"><?php 
           $awal= $tgl_awal ;
           $akhir= $tgl_akhir ;
+<<<<<<< HEAD
           $pegawai= $pegawai ;?>
+=======
+          ?>
+>>>>>>> 05bca21583e6140bde4002a3c959b79f0e7859bb
 
               Laporan Tanggal :   <?php if ($awal == null ) { ?>
                         <?= date('d-m-Y') ?>
@@ -71,7 +79,18 @@ s{
                       <span style="color: green; font-size: 13px">  <?=date('d-m-Y', strtotime($akhir)); ?></span>
                       <?php  }?>
 
+<<<<<<< HEAD
                </p>
+=======
+              , Nama Karyawan: 
+                      <!-- <?php if ($karyawan == null ) { ?>
+                        <?= 'All'?>
+                      <?php } else { ?>
+                        
+                          <span style="color: red; font-size: 13px"></span>
+                         
+                      <?php  }?> </p> -->
+>>>>>>> 05bca21583e6140bde4002a3c959b79f0e7859bb
 
 
 
@@ -79,9 +98,16 @@ s{
                 <thead>
                 <tr id="tr" class="font-weight-bold">
                       <td >No</td>
+<<<<<<< HEAD
                       <td style="width: 45px">Nama Pegawai</td>
                       <td style="width: 70px">Bulan/Tahun</td>
                       <td>Jumlah Absen</td>      
+=======
+                      <td style="">Nama Pegawai</td>
+                      <td style="">Tanggal Absen</td>
+                      <td>Status Absen</td>
+              
+>>>>>>> 05bca21583e6140bde4002a3c959b79f0e7859bb
                 </tr>
                 </thead>
                 <tbody>
@@ -89,6 +115,7 @@ s{
                       $jumlah=0;
                       $spaid=0;
                      foreach ($absen as $i) { 
+<<<<<<< HEAD
                      ?>  
                     <tr id='tr' style="">
                       <td style="width: 30px"><?= $no?></td>
@@ -100,6 +127,32 @@ s{
                       </td>
 
                      
+=======
+                     /*$jumlah= $jumlah+$i['total_tarif'];
+                     $metode= $i['metode_bayar'];
+                     $statusb/*= $i['statusbayar'];
+                     $statusp= $i['status'];
+                     $rm     = $i['rm'];*/
+                     ?>  
+                    <tr id='tr' style="">
+                      <td style="width: 30px"><?= $no?></td>
+                    
+
+                      
+                      <td style="width: 50px" ><?=date('d-m-Y', strtotime($i['tgl_absen'] )); ?></td>
+                    
+                      <td style="width: 90px"><?= $i['nama_pegawai']?></td>
+                      <td style="width: 145px"><?=strtolower(ucwords( $i['status_absen'] ));?></td>
+                      <!-- <td style="width: 45px"><?php
+                       if ($metode == 1) { ?>
+                       Cash
+                      <?php } else  if ($metode == 3){ ?>
+                       COD
+                       <?php }?>
+                      </td>  -->
+
+                  
+>>>>>>> 05bca21583e6140bde4002a3c959b79f0e7859bb
                     </tr>
                     <?php $no++; } ;
                     ?>

@@ -72,12 +72,20 @@
             <div class="kt-portlet kt-portlet--mobile">
               <div class="kt-portlet__head kt-portlet__head--lg">
                 <div class="kt-portlet__head-label">
+<<<<<<< HEAD
                     <i class="kt-font-brand flaticon2-paper"></i>
                   <h3 class="kt-portlet__head-title ml-3">
                     Rekap Presensi
                   </h3>  
                 </div>
                 
+=======
+                  <i class="kt-font-brand flaticon2-paper"></i>
+                  <h3 class="kt-portlet__head-title ml-3">
+                    Data Presensi
+                  </h3>
+                </div>
+>>>>>>> 05bca21583e6140bde4002a3c959b79f0e7859bb
                 <div class="kt-portlet__head-toolbar">
                   <div class="kt-portlet__head-wrapper">
                     <div class="kt-portlet__head-actions">
@@ -86,6 +94,7 @@
                         Print
                       </a>
                     </div>
+<<<<<<< HEAD
 
                     <div class="kt-portlet__head-actions ml-1">
                       <a  class="btn btn-outline-brand btn-sm" href="<?= base_url('admin2/detail_absen') ?>">
@@ -93,6 +102,8 @@
                         DetaiL Absen
                     </a>
                     </div>
+=======
+>>>>>>> 05bca21583e6140bde4002a3c959b79f0e7859bb
                   </div>
                 </div>
               </div>
@@ -102,8 +113,14 @@
                     <tr>
                       <th>No</th>
                       <th>Nama Pegawai</th>
+<<<<<<< HEAD
                       <th>Bulan/Tahun</th>
                       <th>Total Absen</th>
+=======
+                      <th>Tanggal Absen</th>
+                      <th>Status Absen</th>
+                      <th width="15%">Aksi</th>
+>>>>>>> 05bca21583e6140bde4002a3c959b79f0e7859bb
                     </tr>
                   </thead>
                   <tbody>
@@ -114,11 +131,18 @@
                       <tr>
                         <td><?php echo $no; ?></td>
                         <td><?php echo $row->nama_pegawai; ?></td>
+<<<<<<< HEAD
                         <td><?php echo date('m-Y', strtotime($row->tgl_absen)); ?></td>
                         <td><?php echo $row->jumlah_absen; ?></td>
                        
                         
                       <!-- <?php if ($status == 1 ) { ?>
+=======
+                        <td><?php echo $row->tgl_absen; ?></td>
+                       
+                        
+                      <?php if ($status == 1 ) { ?>
+>>>>>>> 05bca21583e6140bde4002a3c959b79f0e7859bb
                         <td><span class='badge badge-danger'>Terlambat</span> 
                       <?php } ?>
                         
@@ -132,7 +156,11 @@
                           
                           </a>
                         </td>
+<<<<<<< HEAD
  -->
+=======
+
+>>>>>>> 05bca21583e6140bde4002a3c959b79f0e7859bb
                       </tr>
                     <?php
                       $no++;
@@ -155,7 +183,11 @@
 
 
 function myFunction() {
+<<<<<<< HEAD
   window.open("<?= base_url('admin2/cetak') ?>?tawal=<?=$tgl_awal; ?>&takhir=<?=$tgl_akhir; ?>&pegawai=<?=$pegawai; ?>", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=1070,left=1070,width=1070,height=1070");
+=======
+  window.open("<?= base_url('admin2/cetakk') ?>?tawal=<?=$tgl_awal; ?>&takhir=<?=$tgl_akhir; ?>&pegawai=<?=$pegawai; ?>", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=1070,left=1070,width=1070,height=1070");
+>>>>>>> 05bca21583e6140bde4002a3c959b79f0e7859bb
 }
 
   </script>

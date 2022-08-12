@@ -18,10 +18,13 @@ class admin2 extends CI_Controller
         $data['user']= $this->db->get_where('tbl_pegawai',
         ['nama_pegawai' => $this->session->userdata('nama_pegawai')])
         ->row_array();
+<<<<<<< HEAD
 
         $data['jumlah']=$this->M_crud->sumpegawai();
         $data['show']=$this->M_crud->sumkegiatan();
         $data['hide']=$this->M_crud->sumkegiatann();
+=======
+>>>>>>> 05bca21583e6140bde4002a3c959b79f0e7859bb
         $this->load->view('admin/dashboard', $data);
     }
 
@@ -84,7 +87,11 @@ class admin2 extends CI_Controller
           $this->load->view('admin/absen/index', $data);
     }
 
+<<<<<<< HEAD
     public function cetak(){
+=======
+    public function cetakk(){
+>>>>>>> 05bca21583e6140bde4002a3c959b79f0e7859bb
     $tgl_awal = $this->input->get('tawal');
     $tgl_akhir = $this->input->get('takhir');
     $pegawai = $this->input->get('pegawai');
@@ -98,6 +105,7 @@ class admin2 extends CI_Controller
        
 } 
 
+<<<<<<< HEAD
  public function detail_absen()
     {
         $data['user']= $this->db->get_where('tbl_pegawai',
@@ -142,6 +150,8 @@ class admin2 extends CI_Controller
        
     } 
 
+=======
+>>>>>>> 05bca21583e6140bde4002a3c959b79f0e7859bb
 
     public function save_pegawai()
     {
