@@ -7,8 +7,9 @@ class karyawan extends CI_Controller
     {
         parent::__construct();
 
-        if (!$this->session->userdata('nama_pegawai') || $this->session->userdata('roles')=='admin'|| $this->session->userdata('role')=='manager') {
-            redirect('auth');}
+        if (!$this->session->userdata('nama_pegawai') || $this->session->userdata('roles') == 'admin' || $this->session->userdata('role') == 'manager') {
+            redirect('auth');
+        }
 
         $this->load->model(array('M_crud'));
         date_default_timezone_set('asia/jakarta');
@@ -17,10 +18,12 @@ class karyawan extends CI_Controller
     public function index()
     {
 
-        $data['user']= $this->db->get_where('tbl_pegawai',
-        ['nama_pegawai' => $this->session->userdata('nama_pegawai')])
-        ->row_array();
-       
+        $data['user'] = $this->db->get_where(
+            'tbl_pegawai',
+            ['nama_pegawai' => $this->session->userdata('nama_pegawai')]
+        )
+            ->row_array();
+
         //get data jam masuk dan keluar
         $jam = $this->db->query("SELECT jam_masuk, jam_keluar, batas_jam_masuk FROM tbl_jadwal")->row_array();
         $data['jamMasuk'] = $jam['jam_masuk'];
@@ -107,7 +110,6 @@ class karyawan extends CI_Controller
             'status_absen' => $status,
         ];
         $this->db->insert('tbl_absensi', $data);
-
     }
 
 
@@ -120,6 +122,7 @@ class karyawan extends CI_Controller
             ->row_array();
         $data['pegawai'] = $this->M_crud->getpegawai();
         $data['kegiatan'] = $this->M_crud->getkegiatan();
+        $data['datas'] = $this->M_crud->getTotalAbsen();
         $this->load->view('karyawan/rekap', $data);
     }
 }

@@ -34,46 +34,46 @@
             </div>
           </div>
 
-        
-                 <div class="kt-container kt-grid__item kt-grid__item--fluid">
-                  <form action="<?= base_url('admin2/absen'); ?>" method="POST" autocomplete="off">
-                    <div class="row">
-                        <div class="col-md-3">
-                      <input type="date" name="awal" class="form-control col-sm ml-1" value="">
-                        </div>
-                        <label style="padding-top: 0.6rem"><b>s/d</b></label>
-                        <div class="col-md-3">
-                          <input type="date" name="akhir" class="form-control  col-sm" value="">
-                        </div>
 
-                      <div class="col-md-4">
-                        <select name="pegawai" class="form-control  col-sm-4">
-                          <option value="">-- Pilih Pegawai --</option>
-                          <?php
-                        $tes = $this->db->get('tbl_pegawai')->result();
-                        foreach ($tes as $die) { ?>
-                          <option value="<?php echo $die->id; ?>"><?php echo $die->nama_pegawai; ?></option>
-                        <?php
-                        }
-                        ?>
-                        </select>
-                      </div>
-                      <div class="col-md-">
-                        <input type="submit" name="submit" value="Cari" class="btn btn-primary btn-sm" style="padding-right: 2rem; padding-left: 2rem;">
-                    </div>
-                  </div>
-                </form>
+          <div class="kt-container kt-grid__item kt-grid__item--fluid">
+            <form action="<?= base_url('admin2/absen'); ?>" method="POST" autocomplete="off">
+              <div class="row">
+                <div class="col-md-3">
+                  <input type="date" name="awal" class="form-control col-sm ml-1" value="">
+                </div>
+                <label style="padding-top: 0.6rem"><b>s/d</b></label>
+                <div class="col-md-3">
+                  <input type="date" name="akhir" class="form-control  col-sm" value="">
+                </div>
+
+                <div class="col-md-4">
+                  <select name="pegawai" class="form-control  col-sm-4">
+                    <option value="">-- Pilih Pegawai --</option>
+                    <?php
+                    $tes = $this->db->get('tbl_pegawai')->result();
+                    foreach ($tes as $die) { ?>
+                      <option value="<?php echo $die->id; ?>"><?php echo $die->nama_pegawai; ?></option>
+                    <?php
+                    }
+                    ?>
+                  </select>
+                </div>
+                <div class="col-md-">
+                  <input type="submit" name="submit" value="Cari" class="btn btn-primary btn-sm" style="padding-right: 2rem; padding-left: 2rem;">
+                </div>
               </div>
+            </form>
+          </div>
           <div class="kt-container kt-grid__item kt-grid__item--fluid">
             <div class="kt-portlet kt-portlet--mobile">
               <div class="kt-portlet__head kt-portlet__head--lg">
                 <div class="kt-portlet__head-label">
-                    <i class="kt-font-brand flaticon2-paper"></i>
+                  <i class="kt-font-brand flaticon2-paper"></i>
                   <h3 class="kt-portlet__head-title ml-3">
                     Rekap Presensi
-                  </h3>  
+                  </h3>
                 </div>
-                
+
                 <div class="kt-portlet__head-toolbar">
                   <div class="kt-portlet__head-wrapper">
                     <div class="kt-portlet__head-actions">
@@ -84,10 +84,10 @@
                     </div>
 
                     <div class="kt-portlet__head-actions ml-1">
-                      <a  class="btn btn-outline-brand btn-sm" href="<?= base_url('admin2/detail_absen') ?>">
+                      <a class="btn btn-outline-brand btn-sm" href="<?= base_url('admin2/detail_absen') ?>">
                         <i class="la la-edit"></i>
                         DetaiL Absen
-                    </a>
+                      </a>
                     </div>
 
                   </div>
@@ -100,22 +100,28 @@
                       <th>No</th>
                       <th>Nama Pegawai</th>
                       <th>Bulan/Tahun</th>
-                      <th>Total Absen</th>
+                      <th>Absen Masuk</th>
+                      <th>Absen Keluar</th>
 
                     </tr>
                   </thead>
                   <tbody>
-                   
+                    <?php foreach ($datas['karyawan'] as $d) :; ?>
                       <tr>
-                        <td></td>
-                        <td></td>
-
-                        <td></td>
-                        <td></td>
-                       
-                    
+                        <td>1</td>
+                        <td>asdfasdf</td>
+                        <td><?= $d->tgl_absen; ?></td>
+                        <td><?= $datas['total_absen_masuk']; ?></td>
+                        <td><?= $datas['total_absen_keluar']; ?></td>
                       </tr>
-                  
+                    <?php endforeach; ?>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama Pegawai</th>
+                      <th>Bulan/Tahun</th>
+                      <th colspan="2">Total : <?= $datas['total']; ?></th>
+                    </tr>
+
                   </tbody>
                 </table>
               </div>
@@ -124,19 +130,18 @@
         </div>
 
 
-  <!-- <?php $this->load->view('templates/script'); ?> -->
-  <!-- end:: script -->
-  <script>
-    $(document).ready(function() {
-      $('#TableKegiatan').DataTable();
-    });
+        <!-- <?php $this->load->view('templates/script'); ?> -->
+        <!-- end:: script -->
+        <script>
+          $(document).ready(function() {
+            $('#TableKegiatan').DataTable();
+          });
 
 
-function myFunction() {
-  window.open("<?= base_url('admin2/cetakk') ?>?tawal=<?=$tgl_awal; ?>&takhir=<?=$tgl_akhir; ?>&pegawai=<?=$pegawai; ?>", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=1070,left=1070,width=1070,height=1070");
-}
-
-  </script>
+          function myFunction() {
+            window.open("<?= base_url('admin2/cetakk') ?>?tawal=<?= $tgl_awal; ?>&takhir=<?= $tgl_akhir; ?>&pegawai=<?= $pegawai; ?>", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=1070,left=1070,width=1070,height=1070");
+          }
+        </script>
 </body>
 
 </html>

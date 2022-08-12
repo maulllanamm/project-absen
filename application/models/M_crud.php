@@ -29,102 +29,103 @@ class M_crud extends CI_Model
     }
 
 
-    function getabsen($tgl_awal=null, $tgl_akhir=null, $pegawai=null){
+    function getabsen($tgl_awal = null, $tgl_akhir = null, $pegawai = null)
+    {
         if ($tgl_awal == null or $tgl_awal == "")  $tgl_awal = date('Y/m/d');
         if ($tgl_akhir == null or $tgl_akhir == "") $tgl_akhir = date('Y/m/d');
 
-        if ($pegawai == null)  {
-            
-        
-        $sql ="SELECT count(p.nama_pegawai) as jumlah_absen, p.nama_pegawai,a.tgl_absen, a.status_absen FROM tbl_absensi a JOIN tbl_pegawai p ON p.id = a.id_pegawai  AND a.tgl_absen BETWEEN '$tgl_awal' AND '$tgl_akhir' GROUP BY p.nama_pegawai ";
-       
+        if ($pegawai == null) {
+
+
+            $sql = "SELECT count(p.nama_pegawai) as jumlah_absen, p.nama_pegawai,a.tgl_absen, a.status_absen FROM tbl_absensi a JOIN tbl_pegawai p ON p.id = a.id_pegawai  AND a.tgl_absen BETWEEN '$tgl_awal' AND '$tgl_akhir' GROUP BY p.nama_pegawai ";
         } else {
-            
+
             $sql = "SELECT count(p.nama_pegawai) as jumlah_absen,p.nama_pegawai, a.tgl_absen, a.status_absen  FROM tbl_absensi a
                 JOIN tbl_pegawai p on p.id = a.id_pegawai AND a.tgl_absen BETWEEN '$tgl_awal' AND '$tgl_akhir' AND a.id_pegawai=$pegawai GROUP BY p.nama_pegawai";
         }
         //echo $querinya;
         //die();
         $q = $this->db->query($sql);
-        return $q->result();     
+        return $q->result();
     }
 
-     function detail_absen($tgl_awal=null, $tgl_akhir=null, $pegawai=null){
+    function detail_absen($tgl_awal = null, $tgl_akhir = null, $pegawai = null)
+    {
         if ($tgl_awal == null or $tgl_awal == "")  $tgl_awal = date('Y/m/d');
         if ($tgl_akhir == null or $tgl_akhir == "") $tgl_akhir = date('Y/m/d');
 
-        if ($pegawai == null)  {
-            
-        
-        $sql ="SELECT count(p.nama_pegawai) as jumlah_absen, p.nama_pegawai,a.tgl_absen, a.status_absen FROM tbl_absensi a JOIN tbl_pegawai p ON p.id = a.id_pegawai  AND a.tgl_absen BETWEEN '$tgl_awal' AND '$tgl_akhir' ORDER BY p.nama_pegawai ";
-       
+        if ($pegawai == null) {
+
+
+            $sql = "SELECT count(p.nama_pegawai) as jumlah_absen, p.nama_pegawai,a.tgl_absen, a.status_absen FROM tbl_absensi a JOIN tbl_pegawai p ON p.id = a.id_pegawai  AND a.tgl_absen BETWEEN '$tgl_awal' AND '$tgl_akhir' ORDER BY p.nama_pegawai ";
         } else {
-            
+
             $sql = "SELECT count(p.nama_pegawai) as jumlah_absen,p.nama_pegawai, a.tgl_absen, a.status_absen  FROM tbl_absensi a
                 JOIN tbl_pegawai p on p.id = a.id_pegawai AND a.tgl_absen BETWEEN '$tgl_awal' AND '$tgl_akhir' AND a.id_pegawai=$pegawai ORDER BY p.nama_pegawai";
         }
         //echo $querinya;
         //die();
         $q = $this->db->query($sql);
-        return $q->result();     
+        return $q->result();
     }
 
-    function cetak_absen($tgl_awal=null, $tgl_akhir=null, $pegawai=null){
+    function cetak_absen($tgl_awal = null, $tgl_akhir = null, $pegawai = null)
+    {
         if ($tgl_awal == null or $tgl_awal == "")  $tgl_awal = date('Y/m/d');
         if ($tgl_akhir == null or $tgl_akhir == "") $tgl_akhir = date('Y/m/d');
 
-        if ($pegawai == null)  {
-            
-        
-        $sql ="SELECT count(p.nama_pegawai) as jumlah_absen, p.nama_pegawai,a.tgl_absen, a.status_absen FROM tbl_absensi a JOIN tbl_pegawai p ON p.id = a.id_pegawai  AND a.tgl_absen BETWEEN '$tgl_awal' AND '$tgl_akhir' GROUP BY p.nama_pegawai ";
-       
+        if ($pegawai == null) {
+
+
+            $sql = "SELECT count(p.nama_pegawai) as jumlah_absen, p.nama_pegawai,a.tgl_absen, a.status_absen FROM tbl_absensi a JOIN tbl_pegawai p ON p.id = a.id_pegawai  AND a.tgl_absen BETWEEN '$tgl_awal' AND '$tgl_akhir' GROUP BY p.nama_pegawai ";
         } else {
-            
+
             $sql = "SELECT count(p.nama_pegawai) as jumlah_absen,p.nama_pegawai, a.tgl_absen, a.status_absen  FROM tbl_absensi a
                 JOIN tbl_pegawai p on p.id = a.id_pegawai AND a.tgl_absen BETWEEN '$tgl_awal' AND '$tgl_akhir' AND a.id_pegawai=$pegawai GROUP BY p.nama_pegawai";
         }
         //echo $querinya;
         //die();
         $q = $this->db->query($sql);
-        return $q->result();     
+        return $q->result();
     }
 
 
-     public function sumpegawai(){
-       $hasil=$this->db->select('*');
-        $this->db->from('tbl_pegawai');   
-        
+    public function sumpegawai()
+    {
+        $hasil = $this->db->select('*');
+        $this->db->from('tbl_pegawai');
+
         return $hasil->count_all_results();
     }
 
     public  function sumkegiatan()
     {
-       $hasil=$this->db->select('*');
-        $this->db->from('tbl_kegiatan');   
-        $tgl=date('Y-m-d');
-        $st= 'show';
-        $this->db->where('start_date',$tgl);
-        $this->db->where('status_kegiatan',$st);
+        $hasil = $this->db->select('*');
+        $this->db->from('tbl_kegiatan');
+        $tgl = date('Y-m-d');
+        $st = 'show';
+        $this->db->where('start_date', $tgl);
+        $this->db->where('status_kegiatan', $st);
         return $hasil->count_all_results();
     }
 
     public  function sumkegiatann()
     {
-       $hasil=$this->db->select('*');
-        $this->db->from('tbl_kegiatan');   
-        $tgl=date('Y-m-d');
-        $st= 'hide';
-        $this->db->where('start_date',$tgl);
-        $this->db->where('status_kegiatan',$st);
+        $hasil = $this->db->select('*');
+        $this->db->from('tbl_kegiatan');
+        $tgl = date('Y-m-d');
+        $st = 'hide';
+        $this->db->where('start_date', $tgl);
+        $this->db->where('status_kegiatan', $st);
         return $hasil->count_all_results();
     }
 
 
 
-//funciont/kegiatan karyawan
-    public function getkegiatan_karyawan($index_data=NULL)
+    //funciont/kegiatan karyawan
+    public function getkegiatan_karyawan($index_data = NULL)
     {
-       $hasil=$this->db->select('tbl_pegawai.*,
+        $hasil = $this->db->select('tbl_pegawai.*,
         tbl_kegiatan.id_kegiatan,
         tbl_kegiatan.nama_kegiatan,
         tbl_kegiatan.start_date,
@@ -136,40 +137,55 @@ class M_crud extends CI_Model
         ');
         $this->db->join('tbl_kegiatan', 'tbl_kegiatan.id_pegawai=tbl_pegawai.id');
         $this->db->from('tbl_pegawai');
-       
-        if($index_data!=NULL){
-        $this->db->where('tbl_kegiatan.id_pegawai',$index_data);
-       /* $this->db->where('pesanan.status',$proses);
+
+        if ($index_data != NULL) {
+            $this->db->where('tbl_kegiatan.id_pegawai', $index_data);
+            /* $this->db->where('pesanan.status',$proses);
         $this->db->where('pesanan.tanggal',$tgl);*/
 
-        $query = $this->db->get();
-        return $query->result();
-    }
+            $query = $this->db->get();
+            return $query->result();
+        }
     }
 
-     public function uploadkegiatan($id){
-        
-         $q = $this->db->query("SELECT p.nama_pegawai,a.start_date,a.end_date,a.nama_kegiatan,a.id_kegiatan  FROM tbl_kegiatan a
+    public function uploadkegiatan($id)
+    {
+
+        $q = $this->db->query("SELECT p.nama_pegawai,a.start_date,a.end_date,a.nama_kegiatan,a.id_kegiatan  FROM tbl_kegiatan a
         JOIN tbl_pegawai p on p.id = a.id_pegawai  where a.id_kegiatan=$id");
-        return $q->result_array();   
+        return $q->result_array();
     }
 
 
-    function upload_kegiatan($id,$rincian,$surat_keg,$status){
-       
-         $data = array(
-            'id_kegiatan'=>$id,
-            'rincian_kegiatan' =>$rincian,
-            'surat_kegiatan' =>$surat_keg,
-            'status_kegiatan'=>$status
+    function upload_kegiatan($id, $rincian, $surat_keg, $status)
+    {
+
+        $data = array(
+            'id_kegiatan' => $id,
+            'rincian_kegiatan' => $rincian,
+            'surat_kegiatan' => $surat_keg,
+            'status_kegiatan' => $status
         );
 
-       $this->db->where('id_kegiatan', $id);
-       $this->db->update('tbl_kegiatan', $data);
+        $this->db->where('id_kegiatan', $id);
+        $this->db->update('tbl_kegiatan', $data);
     }
 
 
 
-}
+    function getTotalAbsen()
+    {
+        $total_absen_masuk = $this->db->query("SELECT COUNT(keterangan) as total_absen_masuk FROM tbl_absensi where status_absen = 1 and keterangan='absen masuk'")->row_array()['total_absen_masuk'];
+        $total_absen_keluar = $this->db->query("SELECT COUNT(keterangan) as total_absen_keluar FROM tbl_absensi where status_absen = 1 and keterangan='absen keluar'")->row_array()['total_absen_keluar'];
+        $total = $total_absen_keluar + $total_absen_keluar;
+        $karyawan = $this->db->query("SELECT * FROM tbl_absensi group by id_pegawai ")->result();
 
-   
+        $data = [
+            'total_absen_masuk' => $total_absen_masuk,
+            'total_absen_keluar' => $total_absen_keluar,
+            'total' => $total,
+            'karyawan' => $karyawan
+        ];
+        return $data;
+    }
+}
